@@ -16,11 +16,15 @@ class App extends React.Component {
 
 
     handleSearch = (value) => {
-
         axios.get(`http://www.omdbapi.com/?apikey=6db0676e&s=${value}`).then((response) => {
             if (response.data['Search']) {
                 this.setState({
                     searchResults: response.data['Search']
+                })
+            } else {
+                console.log(response);
+                this.setState({
+                    searchResults: response.data
                 })
             }
         });
@@ -68,7 +72,7 @@ class App extends React.Component {
     };
 
     render() {
-        let main = 'Please search..';
+        let main = '';
         if (this.state.activeMovie) {
             main = <MovieDetail movie={this.state.activeMovie ? this.state.activeMovie : undefined} key={"key1"}
                                 reset={this.handleReset}
@@ -81,13 +85,13 @@ class App extends React.Component {
         }
 
         return (
-            <div className="flex">
-                <div className="w-1/5 p-4 min-h-screen bg-gray-200">
+            <div className="flex flex-col sm:flex-row">
+                <div className=" w-full sm:w-1/5 p-4 sm:min-h-screen bg-gray-200">
                     <Sidebar search={this.handleSearch} watchlist={this.state.watchlist} openMovie={this.getActiveMovie}
                              removeFromWatchlist={this.removeFromWatchlist}
                     />
                 </div>
-                <div className="w-4/5 p-8 bg-gray-300">
+                <div className="w-full sm:w-4/5 p-8 bg-gray-300 min-h-full">
                     {main}
                 </div>
             </div>

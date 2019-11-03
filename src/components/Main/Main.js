@@ -5,7 +5,8 @@ const Main = props => {
     let searchResults = [];
 
     if (props.results) {
-        searchResults = props.results.map( (result) => { return <Result key={result['imdbID']} result={result} click={props.click}/>} );
+
+        searchResults = props.results['Error'] ? props.results['Error'] :  props.results.map( (result) => { return <Result key={result['imdbID']} result={result} click={props.click}/>} );
     }
 
     return (
@@ -16,7 +17,7 @@ const Main = props => {
                 }
             </h1>
             <div className="search-results flex flex-wrap">
-                {searchResults}
+                {props.results['Error'] ? props.results['Error'] : searchResults}
             </div>
         </div>
     );

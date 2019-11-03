@@ -2,8 +2,8 @@ import React from 'react';
 
 const Result = props => {
     return (
-        <div className="w-1/4  p-2 flex" onClick={() => props.click(props.result['imdbID'])}>
-            <div className="m-3 bg-white shadow p-3" >
+        <div className="w-1/2 sm:w-1/4  p-2 flex" onClick={() => props.click(props.result['imdbID'])}>
+            <div className="m-3 bg-white shadow p-3 w-full" >
                 <div className="img w-full mr-4 mb-4">
                     <img src={props.result['Poster']} alt=""/>
                 </div>
