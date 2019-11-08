@@ -53,9 +53,9 @@ class App extends React.Component {
         }
     };
 
-    removeFromWatchlist = (id) => {
+    removeFromWatchlist = (event, id) => {
+
         const movieToRemove = this.state.watchlist.findIndex((el) => el.id === id);
-        console.log(movieToRemove);
         let watchlist = [...this.state.watchlist];
 
         if (movieToRemove !== -1) {
